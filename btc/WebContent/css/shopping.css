@@ -1,0 +1,239 @@
+@charset "utf-8";
+body{
+	margin: 0;
+}
+p{
+	margin: 0;
+	width: 370px;
+}
+b{
+	font-weight: normal;
+}
+ul,ol,dl,dt,dd,li{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+a{
+	text-decoration: none;
+}
+em{
+	font-style: normal;
+}
+.box{
+	width: 100%;
+}
+.line{
+	width: 100%;
+	height: 1px;
+	background: #D63A3B;
+}
+   /*商品信息分类栏*/
+.cont-shopping{
+	width: 1200px;
+	margin: 0 auto;
+}
+.cont-shopping .all{
+	width: 1200px;
+	height: 32px;
+	border: 1px solid #eeeeee;
+}
+.cont-shopping .all input{
+	vertical-align: middle;
+	margin-left: 20px;
+}
+.cont-shopping .all span{
+	font-family: "微软雅黑";
+	font-size: 14px;
+	line-height: 32px;
+	color: #666666;
+}
+.cont-shopping .all .s1{
+	margin-left: 3px;
+}
+.cont-shopping .all .s2{
+	margin-left: 140px;
+}
+.cont-shopping .all .s3{
+	margin-left: 220px;
+}
+.cont-shopping .all .s4{
+	margin-left: 320px;
+}
+.cont-shopping .all .s5{
+	margin-left: 85px;
+}
+.cont-shopping .all .s6{
+	margin-left: 100px;
+}
+.cont-shopping .all .s7{
+	margin-left: 150px;
+}
+.cont-shopping .store{
+	margin-top: 10px;
+}
+.cont-shopping .store input{
+	margin-left: 21px;
+	vertical-align: middle;
+}
+.cont-shopping .store span{
+	font-family: "微软雅黑";
+	font-size: 14px;
+	line-height: 30px;
+	color: #666666;
+}
+.cont-shopping .thing .up{
+	width: 1198px;
+	height: 40px;
+	border: 1px solid #EEEEEE;
+	background: #f4f4f4;
+}
+.cont-shopping .thing .up p{
+	display: inline-block;
+	width: 25px;
+	height: 29px;
+	background: url(../img/images/hjfsdhk_03.png);
+	vertical-align: middle;
+	margin-left:30px;
+}
+.cont-shopping .thing .up span{
+	font-family: "微软雅黑";
+	font-size: 14px;
+	line-height: 32px;
+	color: #d63a3b;
+	line-height: 40px;
+	margin-left: 10px;
+}
+.cont-shopping .thing .down1{
+	width: 1198px;
+	height: 144px;
+	background: #fbfbfb;
+	border: 1px solid #F4F4F4;
+	overflow: hidden;
+}
+.cont-shopping .thing .down1 li{
+	float: left;
+}
+.cont-shopping .thing .down1 .l1{
+	margin-left: 21px;
+	margin-top:58px;
+}
+.cont-shopping .thing .down1 .l2{
+	width: 94px;
+	height: 86px;
+	border: 1px solid #EEEEEE;
+	background: #FFFFFF;
+	margin: 28px 15px ;
+}
+.cont-shopping .thing .down1 .l3,.cont-shopping .thing .down1 .l8{
+	cursor: pointer;
+	font-family: "微软雅黑";
+	font-size: 14px;
+	line-height: 20px;
+	color: #666666;
+	margin-top: 43px;
+}
+.cont-shopping .thing .down1 .l4{
+	font-family: "微软雅黑";
+	font-size: 14px;
+	line-height: 144px;
+	color: #666666;
+	margin-left: 145px;
+}
+.cont-shopping .thing .down1 .l5{
+	font-family: "微软雅黑";
+	font-size: 16px;
+	line-height: 144px;
+	color: #d63a3b;
+	margin-left: 50px;
+}
+.cont-shopping .thing .down1 .l6{
+	margin:60px  0 0 40px;
+}
+
+.cont-shopping .thing .down1 .l6 input{
+	display: inline-block;
+	border: 1px solid #eeeeee;
+	width: 40px;
+	height: 23px;
+	text-align: center;
+	font-family: "微软雅黑";
+	font-size: 14px;
+	color: #666666;
+}
+.cont-shopping .thing .down1 .l6 a{
+	border: 1px solid #eeeeee;
+	display: inline-block;
+	width: 15px;
+}
+
+.cont-shopping .thing .down1 .l6 a .sub{
+	border-left: none;
+	display: inline-block;
+	width: 5px;
+	
+}
+.cont-shopping .thing .down1 .l6 .n1,.cont-shopping .thing .down1 .l6 .n3{
+	cursor: pointer;
+}
+.cont-shopping .thing .down1 .xj{
+	font-family: "微软雅黑";
+	font-size: 16px;
+	line-height: 144px;
+	color: #d63a3b;
+	margin-left: 50px;
+}
+.cont-shopping .thing .down1 .l8{
+	margin-left: 110px;
+	width: 50PX;
+}
+.cont-shopping .allt{
+	width: 1200px;
+	height: 60px;
+	background: #FFFFFF;
+	box-shadow: 4px 1px 23px 0px #D2D2D2;
+	margin: 10px 0  50px 0;
+}
+.cont-shopping .allt input{
+	vertical-align: middle;
+	margin-left: 20px;
+}
+.cont-shopping .allt span{
+	font-family: "微软雅黑";
+	font-size: 14px;
+	line-height: 60px;
+	color: #666666;
+}
+.cont-shopping .allt .s1{
+	margin-left: 3px;
+}
+.cont-shopping .allt .s2{
+	margin-left: 80px;
+}
+.cont-shopping .allt .s3{
+	margin-left: 350px;
+}
+.cont-shopping .allt .sf{
+	margin-left: 5px;
+	color: #D63A3B;
+}
+.cont-shopping .allt .s5{
+	margin-left: 5px;
+}
+.cont-shopping .allt .s6{
+	margin-left: 100px;
+}
+.cont-shopping .allt .ss{
+	color: #D63A3B;
+}
+.cont-shopping .allt .s8{
+	display: inline-block;
+	width: 100px;
+	height:60px;
+	background: #D63A3B;
+	margin-left: 35px;
+	font-size: 16px;
+	color: #FFFFFF;
+	text-align: center;
+	line-height: 60px;
+}

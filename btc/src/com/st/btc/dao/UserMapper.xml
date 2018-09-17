@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.st.btc.dao.UserMapper">
+  	
+  	<select id="login" parameterType="com.st.btc.pojo.User" resultType="com.st.btc.pojo.User">
+  		select * from user where uname=#{uname} and password=#{password}
+  	</select>
+  	
+  	<select id="selectByName"  resultType="com.st.btc.pojo.User">
+  		select * from user where uname=#{uname}
+  	</select>
+  	
+  	<insert id="register" parameterType="com.st.btc.pojo.User">
+  		 insert into user(uname,password,uemail,uphone,urealname,ucard,uaddr) values(#{uname},#{password},#{uemail},#{uphone},#{urealname},#{ucard},#{uaddr})
+  	</insert>
+  	
+  	<update id="selectinfo" parameterType="com.st.btc.pojo.User">
+	update user 
+	<set>
+		<if test="password!='' and password!=null ">password=#{password},</if>
+		<if test="uemail!='' ">uemail=#{uemail},</if>
+		<if test="uphone!='' ">uphone=#{uphone},</if>
+		<if test="urealname!='' ">urealname=#{urealname},</if>
+		<if test="ucard!='' "> ucard=#{ucard},</if>
+		<if test="uaddr!='' ">uaddr=#{uaddr}</if>
+	</set>
+	where uid=#{uid}
+	</update>
+	
+  	<update id="newpwd" parameterType="com.st.btc.pojo.User">
+	update user  set password=#{password} where uid=#{uid}
+  	</update>
+	
+	<update id="newmoney" parameterType="com.st.btc.pojo.User">
+	update user
+	 <set>
+      <if test="umoney != null">umoney=umoney+#{umoney}</if>
+    </set>
+	 where uid=#{uid}
+  	</update>
+	
+	
+	<select id="getRows" parameterType="com.st.btc.pojo.User" resultType="Integer">
+  		select count(*) as count from user
+  	<where>
+  		<if test="uname !=null and uname !=''">and uname like'%${uname}%'</if>
+  	</where>
+  </select>
+  	<select id="selectAll" parameterType="com.st.btc.util.Page" resultType="com.st.btc.pojo.User">
+  		select * from user 
+  	<where>
+  		<if test="where.uname !=null and where.uname !=''">and uname like'%${where.uname}%'</if>
+  	</where>
+  	limit #{start},#{pagerows}
+  	
+  </select>
+	
+	<update id="updateuser" parameterType="com.st.btc.pojo.User" >
+		update user set password=#{password} where uid=#{uid}
+	</update>
+	
+	<update id="removeuser" parameterType="com.st.btc.pojo.User" >
+		update user set ustatus=#{ustatus} where uid=#{uid}
+	</update>
+	
+	<update id="updatemoney" >
+		update user set umoney=umoney-#{1} where uid=#{0}
+	</update>
+  </mapper>

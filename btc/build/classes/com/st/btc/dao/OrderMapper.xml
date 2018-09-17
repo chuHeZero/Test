@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.st.btc.dao.OrderMapper">
+  	
+  	<insert id="addorder" parameterType="com.st.btc.pojo.Order">
+  		
+  		<selectKey keyProperty="onum" resultType="java.lang.String" order="BEFORE">
+  			select UUID()
+  		</selectKey>
+  		insert into `order` (onum,oprice,uid,oaddr,ophone,oname) values(#{onum},#{oprice},#{uid},#{oaddr},#{ophone},#{oname})
+  	</insert>
+  	
+  	<resultMap type="com.st.btc.pojo.Order" id="ordermap">
+  		<id column="onum" property="onum"  />
+  		<result column="odate" property="odate"/>
+  		<result column="oprice" property="oprice"/>
+  		<result column="uid" property="uid"/>
+  		<result column="oaddr" property="oaddr"/>
+  		<result column="ophone" property="ophone"/>
+  		<result column="oname" property="oname"/>
+  		<result column="ocode" property="ocode"/>
+  		
+  		<collection property="list" ofType="com.st.btc.pojo.Details">
+  			<id column="did" property="did"/>
+  			<result column="onum" property="onum"/>
+  			<result column="pid" property="pid"/>
+  			<result column="pcount" property="pcount"/>
+  			<result column="pprice" property="pprice"/>
+  		</collection>
+  	</resultMap>
+  	
+  	<select id="selectByUId" resultMap="ordermap">
+  		select * from `order`,details
+  		 where uid=#{uid} and `order`.onum = details.onum
+  		 order by odate desc
+  	</select>
+  	
+  	<resultMap type="com.st.btc.pojo.Details" id="map">
+  		<id property="did" column="did"/>
+  		<result property="onum" column="onum"/>
+  		<result property="pid" column="pid"/>
+  		<result property="pcount" column="pcount"/>
+  		<result property="pprice" column="pprice"/>
+  		<association property="product" javaType="com.st.btc.pojo.Product">
+  		<id property="pid" column="pid"/>
+  		<result property="ppic" column="ppic"/>
+  		<result property="pname" column="pname"/>
+  		<result property="pdept" column="pdept"/>
+  		</association>
+  	</resultMap>
+  	
+  	<select id="getorinfo" resultMap="map">
+  		select details.*, product.ppic as ppic,product.pname as pname,product.pdept as pdept
+  		from details,product
+  		where details.pid = product.pid and details.onum = #{onum}
+  		
+  	</select>
+  	
+  	
+  	
+  		<resultMap type="com.st.btc.pojo.Order" id="ormap">
+	  		<id column="onum" property="onum"  />
+	  		<result column="odate" property="odate"/>
+	  		<result column="oprice" property="oprice"/>
+	  		<result column="uid" property="uid"/>
+	  		<result column="oaddr" property="oaddr"/>
+	  		<result column="ophone" property="ophone"/>
+	  		<result column="oname" property="oname"/>
+	  		<result column="ocode" property="ocode"/>
+	  		
+  		<collection property="list" ofType="com.st.btc.pojo.Details">
+  			<id column="did" property="did"/>
+  			<result column="onum" property="onum"/>
+  			<result column="pid" property="pid"/>
+  			<result column="pcount" property="pcount"/>
+  			<result column="pprice" property="pprice"/>
+  		</collection>
+  	</resultMap>
+  	
+  	<select id="selectorder" parameterType="String" resultMap="ormap">
+  		select * from `order`,details
+  		 where `order`.onum = details.onum
+  		 <if test="_parameter != ''"> and oname=#{oname }</if>
+  		 order by odate desc
+  	</select>
+  	
+  	<resultMap type="com.st.btc.pojo.Details" id="mgrmap">
+  		<id property="did" column="did"/>
+  		<result property="onum" column="onum"/>
+  		<result property="pid" column="pid"/>
+  		<result property="pcount" column="pcount"/>
+  		<result property="pprice" column="pprice"/>
+  		<association property="product" javaType="com.st.btc.pojo.Product">
+  		<id property="pid" column="pid"/>
+  		<result property="ppic" column="ppic"/>
+  		<result property="pname" column="pname"/>
+  		<result property="pdept" column="pdept"/>
+  		</association>
+  	</resultMap>
+  	
+  	<select id="getmgrorinfo" resultMap="mgrmap">
+  		select details.*, product.ppic as ppic,product.pname as pname,product.pdept as pdept
+  		from details,product
+  		where details.pid = product.pid and details.onum = #{onum}
+  		
+  	</select>
+  	
+  </mapper>

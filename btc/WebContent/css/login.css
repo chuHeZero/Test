@@ -1,0 +1,173 @@
+
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+.topbg{
+
+	background-repeat-y: no-repeat;
+	background-position: bottom;
+}
+.top{
+	width: 1210px;
+	margin: auto;
+}
+
+.top img{
+	float: left;
+	margin: 20px 0px;
+	position-x: -160px;
+}
+.top h1{
+	float: left;
+	color: #333;
+	font-size: 24px;
+	font-weight: 400;
+	margin: 34px 25px;
+}
+.top .login{
+	float: right;
+	color: #888;
+	margin-top: 50px;
+}
+.top .login a{
+	color: #E22;
+	text-decoration: none;
+}
+
+.top .login a:hover{
+	color: #c81623;
+	text-decoration: underline;
+}
+.clear{
+	clear: both;
+}
+.centerbg{
+	background-color: #248679;
+}
+.center{
+	width: 990px;
+	height: 475px;
+	background-image: url(../img/liying.jpg);
+	margin: auto;
+}
+.center form{
+	background-color: white;
+	float: right;
+	margin: 30px 0px;
+	width: 350px;
+}
+.center h1{
+	font-weight: 400;
+	text-align: center;
+	margin: 20px;
+}
+.center .hint{
+	color: #888888;
+	font-size: 12px;
+	margin: 5px 0px 0px 45px;
+}
+.center div label{
+	border: 1px solid #DDD;
+	border-right: 0px;
+	color: #666;
+	width: 68px;
+	height: 35px;
+	display: inline-block;
+	text-align: center;
+	padding-top: 10px;
+	margin-left: 40px;
+}
+.center div input{
+	border: 1px solid #DDD;
+	width: 180px;
+	height: 45px;
+	padding: 0px 10px;
+}
+
+.center div input[type='submit']{
+	width: 280px;
+	background-color: #e2231a;
+	color: white;
+	font-size: 16px;
+	margin-left: 40px;
+}
+.center div input[type='submit']:hover{
+	background-color: #c81623;
+}
+
+.center .regother{
+	margin: 0px 0px 50px 40px;
+	padding: 0px;
+	width: 280px;
+}
+.center .regother a{
+	color: #888888;
+	text-decoration: none;
+	font-size: 14px;
+}
+.center .regother a:hover{
+	color: #C81623;
+}
+.center .rege{
+	margin: 0px;
+	padding: 0px;
+	float: left;
+}
+.center .rege i{
+	width: 26px;
+	height: 26px;
+	display: inline-block;
+	
+	background-position-y: -160px;
+	position: relative;
+	top: 8px;
+	margin-right: 8px;
+}
+.center .regg{
+	margin: 0px;
+	padding: 0px;
+	float: right;
+}
+.center .regg i{
+	width: 26px;
+	height: 26px;
+	display: inline-block;
+
+	background-position-x: -40px;
+	background-position-y: -160px;
+	position: relative;
+	top: 8px;
+	margin-right: 8px;
+}
+.bottom{
+	width: 1210px;
+	margin: auto;
+	text-align: center;
+	border-top: 1px solid #DDD;
+	padding: 30px;
+	color: #888;
+	font-size: 12px;
+}
+
+.bottom a{
+	color: #888;
+	text-decoration: none;
+	margin: 0px 10px;
+}
+
+.bottom .copyright{
+	margin: 20px;
+}
+.error{
+	color:#FF0000;
+	width:100px;
+	height:20px;
+	margin:auto;
+}
+.code img{
+	width:200px;
+	height:50px;
+	padding:0px 0px 0px 40px;
+}

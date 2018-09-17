@@ -1,0 +1,45 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    border: none;
+    font-size: 12px;
+    font-weight: 100;
+    font-family: "宋体", "微软雅黑", "黑体";
+    color:#333;
+}
+body{ min-width: 1170px;}
+a{ color: #333;}
+a:hover{ cursor: pointer;}
+/*---------------------------------header----------------------------*/
+/*-----------top---------------*/
+.headTop{ background-color: #eee; overflow: hidden;}
+.topCon{ width: 1100px; margin: 0 auto; overflow: hidden; line-height: 40px;}
+.topLeft,.topRight>li{ float: left; margin-left: 20px;}
+.topRight{ float: right; margin-right: 20px;}
+/*-----------logo--------------*/
+.logoCon{ width: 1100px; margin: 0 auto;; overflow: hidden;}
+.indexLogo,.loginLogo{ height: 110px; float: left;}
+.indexLogo{ width: 210px; background: url("../images/allIcon.png") 0 0 no-repeat;}
+.loginLogo{ width: 140px; background: url("../images/allIcon.png") -210px 0 no-repeat;}
+.logoCon>p{ line-height: 110px; margin-left:30px; float: left; font-size: 24px;
+    color: #888; font-family: "微软雅黑", "宋体", "黑体";}
+/*-------------logoRight---------------*/
+.logoRight{ float: right; margin-top: 36px; width: 600px;}
+/*-----------search--------------*/
+.searchBox{ float: left; width: 400px;}
+.searchBox>input{ width: 280px; height: 36px; padding-left: 20px; border: 1px solid #ff371f;
+    color: #9a9a9a; line-height: 36px;font-size: 14px; float: left;}
+.searchBox>button{ width:80px; height: 38px; background-color: #ff371f; cursor: pointer;
+    color: #fff; line-height: 38px;font-size: 14px; float: left;}
+.searchBox>p{ line-height: 36px; color: #9a9a9a; margin-left: 20px; float: left; margin-bottom: 0;}
+/*----------shoppingCart----------*/
+.shoppingCart{ float: right; width: 130px; border: 1px solid #eee; background-color: #f7f7f7;
+    line-height: 38px; font-size: 14px; cursor: pointer; display: block;}
+.shoppingCartIcon{ width: 30px; height: 30px; float: left; margin-right: 10px;
+    display: block; background: url("../images/allIcon.png") -400px -120px no-repeat;}
+.shoppingCart>span{ font-size: 14px; color: #ff371f;}
+/*---------------------------------footer----------------------------*/
+.footerCon{ overflow: hidden; background-color: #fcfcfc; padding: 60px 0; border-top:1px solid #ccc;}
+.footerCon>p{ text-align: center; line-height: 30px;}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.st.btc.dao.ManagerMapper">
+  
+   	<select id="login" parameterType="com.st.btc.pojo.Manager" resultType="com.st.btc.pojo.Manager">
+  		select * from manager where mname=#{mname} and mpassword=#{mpassword}
+  	</select>
+  
+  	<update id="newpwd" parameterType="com.st.btc.pojo.Manager">
+		update manager  set mpassword=#{mpassword} where mid=#{mid}
+  	</update>
+  
+  </mapper>

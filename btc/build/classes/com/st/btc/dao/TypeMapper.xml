@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.st.btc.dao.TypeMapper">
+  
+  <select id="getFType" resultType="HashMap">
+  	select* from type where ptid =0 
+  </select>
+  <select id="getSType" resultType="HashMap">
+  <!-- 当ptid等于null时查询所有 当不为空时根据ptid查询 -->
+  	select* from type
+	<where>
+		<if test="value==null">and ptid !=0</if>
+		<if test="value!=null">and ptid =#{ptid}</if>
+	</where>
+  </select>
+  
+  <select id="getSTypeP" parameterType="Integer" resultType="HashMap">
+  	select * from type where ptid=#{tid}
+  </select>
+  </mapper>

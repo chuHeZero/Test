@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.st.btc.dao.ProductMapper">
+  
+  <insert id="add" parameterType="com.st.btc.pojo.Product">
+  		insert into product (pname,pdept,pprice,pcount,pftype,pstype,ppic) values (#{pname},#{pdept},#{pprice},#{pcount},#{pftype},#{pstype},#{ppic})
+  </insert>
+  <select id="getRows" parameterType="com.st.btc.pojo.Product" resultType="Integer">
+  	select count(*) as count from product
+  	<where>
+  		<if test="pname !=null and pname !=''">and pname like'%${pname}%'</if>
+  		<if test="pftype !=null and pftype !=0">and pftype =#{pftype}</if>
+  		<if test="pstype !=null and pstype !=0">and pstype =#{pstype}</if>
+  	</where>
+  </select>
+  <select id="selectAll" parameterType="com.st.btc.util.Page" resultType="com.st.btc.pojo.Product">
+  	select * from product 
+  	<where>
+  		<if test="where.pname !=null and where.pname !=''">and pname like'%${where.pname}%'</if>
+  		<if test="where.pftype !=null and where.pftype !=''">and pftype =#{where.pftype}</if>
+  		<if test="where.pstype !=null and where.pstype !=''">and pstype =#{where.pstype}</if>
+  	</where>
+  	limit #{start},#{pagerows}
+  	
+  </select>
+   <update id="updatepc" parameterType="com.st.btc.pojo.Product">
+		update product 
+	<set>
+		<if test=" pname!='' ">pname=#{pname},</if>
+		<if test=" pdept!='' ">pdept=#{pdept},</if>
+		<if test=" pprice!='' ">pprice=#{pprice},</if>
+		<if test=" pcount!='' ">pcount=#{pcount},</if>
+		<if test=" pftype!='' "> pftype=#{pftype},</if>
+		<if test=" pstype!='' ">pstype=#{pstype},</if>
+		<if test=" ppic!=null and ppic !='' ">ppic=#{ppic}</if>
+	</set>
+	where pid=#{pid}
+	</update>
+	
+	<update id="removepc">
+		update product set pstatus=#{pstatus} where pid=#{pid}
+	</update>
+	
+	<select id="getRowss" parameterType="com.st.btc.pojo.Ftype" resultType="Integer">
+  		select count(*) as count from type
+	  	<where>
+	  		<if test="tname !=null and tname !=''">and tname like'%${tname}%'</if>
+	  	</where>
+  	</select>
+	<select id="ftype" parameterType="com.st.btc.util.Page" resultType="com.st.btc.pojo.Ftype">
+	  	select * from type 
+	  	<where>
+	  		<if test="where.tname !=null and where.tname !=''">and tname like'%${where.tname}%'</if>
+	  	</where>
+	  	limit #{start},#{pagerows}
+	  	
+	</select>
+  
+   <update id="updatefs" parameterType="com.st.btc.pojo.Ftype">
+		update type 
+	<set>
+		<if test=" tname!='' ">tname=#{tname},</if>
+		<if test=" ptid!=''and ptid !=null ">ptid=#{ptid}</if>
+	</set>
+	where tid=#{tid}
+	</update>
+  
+  	<delete id="removefs" parameterType="com.st.btc.pojo.Ftype">
+  		delete from type where tid=#{tid}
+  	</delete>
+  
+  <insert id="addtype" parameterType="com.st.btc.pojo.Ftype">
+  		insert into type (tname,ptid) values (#{tname},#{ptid})
+  </insert>
+  
+  <select id="FType" resultType="com.st.btc.pojo.Ftype">
+  	select tid,tname from type where ptid=0 
+  </select>
+  
+  <select id="SType" resultType="com.st.btc.pojo.Ftype">
+  	select tid,tname from type where ptid!=0 
+  </select>
+  
+  <select id="selectproduct" resultType="com.st.btc.pojo.Product">
+  	select * from product where pid=#{pid}
+  </select>
+  
+  <update id="updatecount">
+  	update product set pcount = pcount-#{param2} where pid=#{param1}
+  	 
+  </update>
+  
+  </mapper>
