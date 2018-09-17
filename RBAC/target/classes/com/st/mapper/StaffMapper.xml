@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.st.mapper.StaffMapper">
+  
+  	<select id="selectStaff" parameterType="com.st.domain.Staff" resultType="com.st.domain.Staff">
+  		select a.*,role.rname as rname,b.sname as sleader  from staff a 
+		join role on role.rid=a.roleid 
+		left join staff b on a.sid_leader=b.sid
+		<where>
+			<if test="param1.sname!='' and param1.sname!=null">a.sname=#{param1.sname}</if>
+		</where>
+  		limit #{param2.start},#{param2.limit}
+  	</select>
+  
+  	 <select id="getCount" parameterType="com.st.domain.Staff" resultType="java.lang.Integer">
+	  	select count(*) as count from staff
+	  </select>
+  
+  	<select id="loginstaff" parameterType="com.st.domain.Staff" resultType="com.st.domain.Staff">
+  		select * from staff where sname =#{sname} and spassword = #{spassword}
+  	</select>
+  	
+  	<select id="getstaffByRoleid" parameterType="com.st.domain.Staff" resultType="com.st.domain.Staff">
+  		select * from staff where sid=#{sid_leader}
+  	</select>
+  	
+  	<select id="getByroleid" parameterType="com.st.domain.Staff" resultType="com.st.domain.Staff">
+		select * from staff where roleid = #{roleid}-1
+  	</select>
+  	
+  	<select id="getstaff" resultType="com.st.domain.Staff">
+		select * from staff where roleid=3
+  	</select>
+  	
+  	<update id="updateStaff" parameterType="com.st.domain.Staff">
+  		update staff 
+  		<set>
+  			<if test="spassword != null"> spassword = #{spassword}</if> 
+  			<if test="ssex != null"> ,ssex = #{ssex}</if> 
+		    <if test="sbirthday != null"> ,sbirthday = #{sbirthday} </if>
+		    <if test="sphone != null">, sphone = #{sphone}</if>
+		    <if test="roleid != null">,roleid = #{roleid}</if>
+		    <if test="sid_leader != null and sid_leader!=''">, sid_leader = #{sid_leader}</if>
+		    <if test="sstate != null">, sstate = #{sstate}</if>
+		    <if test="stime != null">, stime = #{stime}</if>
+  		</set>
+  		where sid=#{sid}
+  	</update>
+  	
+  	<insert id="insertStaff" parameterType="com.st.domain.Staff">
+  		insert into staff(sname,spassword,ssex,sbirthday,sphone,roleid,sid_leader,sstate,stime)values(#{sname},#{spassword},#{ssex},#{sbirthday},#{sphone},#{roleid},#{sid_leader},#{sstate},#{stime})
+  	</insert>
+  	
+  	<delete id="deleteStaff">
+  		delete from staff where sid=#{sid}
+  	</delete>
+  	
+  	<select id="getStaffCount" resultType="map">
+  		select staff.sname,sum(mcount) as amcount from staff
+		left join market on market.sid = staff.sid 
+		where staff.roleid=3
+		GROUP BY staff.sname
+  	</select>
+  	
+  	<update id="updatePwd" parameterType="com.st.domain.Staff">
+  		update staff set spassword=#{spassword}
+  		where sid=#{sid}
+  	</update>
+  	
+  		<update id="updateMyInfo" parameterType="com.st.domain.Staff">
+  		update staff 
+  		<set>
+  			<if test="ssex != null"> ssex = #{ssex}</if> 
+		    <if test="sbirthday != null"> ,sbirthday = #{sbirthday} </if>
+		    <if test="sphone != null">, sphone = #{sphone}</if>
+		    <if test="sstate != null">, sstate = #{sstate}</if>
+		    <if test="stime != null">, stime = #{stime}</if>
+  		</set>
+  		where sid=#{sid}
+  	</update>
+  	
+  </mapper>

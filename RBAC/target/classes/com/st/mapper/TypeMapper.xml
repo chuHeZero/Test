@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.st.mapper.TypeMapper">
+	<select id="selectType" resultType="com.st.domain.Type">
+		select * from type
+	</select>
+	<select id="getCount" parameterType="com.st.domain.Type" resultType="java.lang.Integer">
+		select count(*) as count from type
+	</select>
+	<select id="gettype" resultType="com.st.domain.Type">
+		select * from type
+	</select>
+	
+	<update id="updateType" parameterType="com.st.domain.Type">
+		update type set tname=#{tname} where tid=#{tid}
+	</update>
+	
+	<delete id="deleteType">
+		delete from type where tid=#{tid}
+	</delete>
+	
+	<insert id="insertType" parameterType="com.st.domain.Type">
+		insert into type (tname)values(#{tname})
+	</insert>
+</mapper>

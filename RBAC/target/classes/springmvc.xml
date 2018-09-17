@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.3.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<!-- 自动扫描的方式 -->
+	<context:component-scan base-package="com.st.controller"></context:component-scan>
+	
+	<!-- 注解 加入该驱动的目的是扫描Controller下的@RequestMapping注解 -->
+	<mvc:annotation-driven></mvc:annotation-driven>
+	
+	<!-- 视图解析器 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!-- 前缀, 后缀 -->
+		<property name="prefix" value="/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	
+	<!-- 文件解析器 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 上传文件大小 -->
+		<property name="maxInMemorySize">
+		<value>#{10*1024*1024}</value>
+		</property>
+	</bean>
+	
+	<!-- 配置拦截器们 -->
+	
+	<mvc:interceptors>
+			<!-- 具体拦截器 -->
+			<mvc:interceptor>
+				<!-- 拦截的操作 -->
+				<mvc:mapping path="/**"/>
+				<!-- 设置需要排除的操作 -->
+				<mvc:exclude-mapping path="/Staff/login.action"/>
+				<mvc:exclude-mapping path="/msgScoket.action"/>
+				
+				<!--  -->
+				<bean class="com.st.interceptor.StaffInterceptor"></bean>
+			</mvc:interceptor>
+			
+			<!-- 控制权限的拦截器 -->
+			<mvc:interceptor>
+				<mvc:mapping path="/access/**"/>
+				
+				<!-- 拦截器类 -->
+				<bean class="com.st.interceptor.AccessInterceptor"></bean>
+				
+			</mvc:interceptor>
+	
+	</mvc:interceptors>
+	<!-- 配置WebSocket -->
+	<websocket:handlers>
+		<websocket:mapping handler="messageScoket" path="/msgScoket.action"/>
+		<websocket:handshake-interceptors>
+			<bean class="com.st.interceptor.SocketInterceptor"></bean>
+		</websocket:handshake-interceptors>
+	</websocket:handlers>
+	
+	<bean id="messageScoket" class="com.st.soket.MessageScoket"></bean>
+	
+</beans>

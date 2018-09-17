@@ -1,0 +1,43 @@
+
+/* 头部背景 */
+.layui-layout-admin .layui-header{
+	background-color: #212121; 
+}
+/* 项目名称字体颜色 */
+.layui-layout-admin .layui-logo{
+	color : #F5F5F5;
+	font-size : 20px;
+	font-weight: bold;
+}
+/* 侧边栏背景 */
+.layui-side{
+	background-color: #263238; 
+}
+/* 侧边导航背景 与侧边栏背景一致辞 */
+.layui-nav{
+	 background-color: #333333; 
+}
+.layui-nav-tree .layui-nav-item a{
+	/*  border-bottom: 1px solid #154360; */
+	border-top : 1px solid #7B7D7D; 
+}
+/* 导航菜单 鼠标移上背景 */
+.layui-nav-tree .layui-nav-item a:hover{
+	background-color: #1b93e1;
+}
+/* 导航菜单鼠标移上时前部颜色块 */
+.layui-nav-tree .layui-nav-bar{
+	 background-color: #333333; 
+}
+/* 二级菜单选中背景 */
+.layui-nav-tree .layui-nav-child dd.layui-this>a{
+	 background-color: #a2d200;
+}
+/* 主体区域背景 */
+.layui-layout-admin .layui-body{
+	 background-color: #F0F0F0; 
+}
+/* 底部固定区域 */
+.layui-layout-admin .layui-footer{
+	 background-color: #D0D3D4; 
+}

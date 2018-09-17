@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.st.mapper.ProductMapper">
+  <select id="selectProduct" resultType="com.st.domain.Product">
+  		select product.*,tname from product 
+  		JOIN type ON product.ptype = type.tid
+  		<where>
+  			<if test="param2.pname!='' and param2.pname !=null">and product.pname like '%${param2.pname}%'</if>
+  			<if test="param2.ptype!='' and param2.ptype !=null and param2.ptype !=0">and product.ptype=#{param2.ptype}</if>
+  			<if test="param2.pprice!='' and param2.pprice!=null and param2.pprice_min!='' and param2.pprice_min!=null">and product.pprice_min between #{param2.pprice_min} and #{param2.pprice}</if>
+  		</where> 
+  		limit #{param1.start},#{param1.limit}
+  </select>
+  
+   <select id="getCount" parameterType="com.st.domain.Product" resultType="java.lang.Integer">
+  		select count(*) as count from product
+   </select>
+  	
+	<select id="getproductByPid" resultType="com.st.domain.Product">
+		select * from product where pid=#{pid}
+	</select>  	
+  	
+  	<select id="getAllproduct" resultType="com.st.domain.Product">
+		select * from product where ptype=#{ptype}
+	</select>
+  	
+  	<select id="getProduct" resultType="com.st.domain.Product">
+		select * from product
+	</select>
+  	
+  	<insert id="addProduct" parameterType="com.st.domain.Product" useGeneratedKeys="true"  keyProperty="pid">
+  		insert into product(pname,pdept,pprice,pprice_min,pcount,ptype)values(#{pname},#{pdept},#{pprice},#{pprice_min},#{pcount},#{ptype})
+  	</insert>
+  
+  	<update id="updateProduct" parameterType="com.st.domain.Product">
+  		update product 
+  		<set>
+  			<if test="pname != null"> pname = #{pname}</if> 
+  			<if test="pprice != null"> ,pprice = #{pprice}</if> 
+		    <if test="pprice_min != null"> ,pprice_min = #{pprice_min} </if>
+		    <if test="pcount != null">, pcount = #{pcount}</if>
+		    <if test="ptype != null">,ptype = #{ptype}</if>
+		    <if test="pdept != null">, pdept = #{pdept}</if>
+  		</set>
+  		where pid=#{pid}
+  	</update>
+  	
+  	<delete id="deleteProduct">
+  		delete from product where pid=#{pid}
+  	</delete>
+  	
+  	<select id="getSalesCount" resultType="map">
+  		select product.pname,sum(mcount) as amcount from product
+		left join market on market.pid = product.pid GROUP BY product.pname
+  	</select>
+  	
+  	<update id="updatePcount" parameterType="com.st.domain.Market">
+  		update product set pcount=pcount-#{mcount} where pid=#{pid}
+  	</update>
+  	
+  	<select id="OneProduct" resultType="com.st.domain.Product">
+  		select * from product where pid =#{pid}
+  	</select>
+  	
+  </mapper>

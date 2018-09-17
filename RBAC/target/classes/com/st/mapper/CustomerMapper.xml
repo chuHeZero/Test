@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.st.mapper.CustomerMapper">
+	<select id="selectCustomer" resultType="com.st.domain.Customer">
+	<if test="param2.rid == 1">
+		select customer.*,tname,pname,iname,vname,sname from customer
+		JOIN type ON customer.tid = type.tid 
+		JOIN product ON customer.pid = product.pid 
+		JOIN intentionstate ON customer.iid = intentionstate.iid 
+		JOIN visitstate ON customer.vid = visitstate.vid 
+		JOIN staff ON customer.sid = staff.sid 
+		<where>
+			<if test="param2.cid!='' and param2.cid!=null and param2.cid!=0">and customer.cid=${param2.cid}</if>
+			<if test="param2.sid!='' and param2.sid!=null and param2.sid!=0 ">and customer.sid=${param2.sid}</if>
+		</where>
+		limit #{param1.start},#{param1.limit}
+	</if>
+	<if test="param2.rid == 2">
+		select customer.*,tname,pname,iname,vname,a.sname from customer
+		JOIN type ON customer.tid = type.tid 
+		JOIN product ON customer.pid = product.pid 
+		JOIN intentionstate ON customer.iid = intentionstate.iid 
+		JOIN visitstate ON customer.vid = visitstate.vid 
+		JOIN staff as a ON customer.sid = a.sid 
+		JOIN staff as b ON a.sid_leader =b.sid
+		<where>
+			b.sid=#{param2.fid}
+			<if test="param2.cid!='' and param2.cid!=null and param2.cid!=0">and customer.cid=${param2.cid}</if>
+			<if test="param2.sid!='' and param2.sid!=null and param2.sid!=0 ">and customer.sid=${param2.sid}</if>
+		</where>
+		limit #{param1.start},#{param1.limit}
+	</if>
+	<if test="param2.rid == 3">
+		select customer.*,tname,pname,iname,vname,sname from customer
+		JOIN type ON customer.tid = type.tid 
+		JOIN product ON customer.pid = product.pid 
+		JOIN intentionstate ON customer.iid = intentionstate.iid 
+		JOIN visitstate ON customer.vid = visitstate.vid 
+		JOIN staff ON customer.sid = staff.sid 
+		<where>
+		staff.sid=#{param2.fid}
+			<if test="param2.cid!='' and param2.cid!=null and param2.cid!=0">and customer.cid=${param2.cid}</if>
+			<if test="param2.sid!='' and param2.sid!=null and param2.sid!=0 ">and customer.sid=${param2.sid}</if>
+		</where>
+		limit #{param1.start},#{param1.limit}
+	</if>		
+	</select>
+	
+	 <select id="getCount" parameterType="com.st.domain.Customer" resultType="java.lang.Integer">
+	  	select count(*) as count from customer
+	  </select>
+	  
+	  <select id="getCustomer" resultType="com.st.domain.Customer">
+	  	select * from customer
+	  </select>
+	  
+	  <update id="updateCustomer" parameterType="com.st.domain.Customer">
+  		update customer 
+  		<set>
+  			<if test="cname != null">cname = #{cname}</if> 
+  			<if test="csex != null">,csex = #{csex}</if> 
+		    <if test="cage != null">,cage = #{cage} </if>
+		    <if test="cphone != null">,cphone = #{cphone}</if>
+		    <if test="tid != null">,tid = #{tid}</if>
+		    <if test="pid != null">,pid = #{pid}</if>
+		    <if test="iid != null">,iid = #{iid}</if>
+		    <if test="vid != null">,vid = #{vid}</if>
+		    <if test="sid != null">,sid = #{sid}</if>
+		    <if test="cremarks != null">,cremarks = #{cremarks}</if>
+  		</set>
+  		where cid=#{cid}
+  	</update>
+  	
+  	<insert id="addCustomer" parameterType="com.st.domain.Customer" useGeneratedKeys="true" keyProperty="cid" >
+  		insert into customer (cname,csex,cage,cphone,tid,pid,iid,vid,sid,cremarks)values(#{cname},#{csex},#{cage},#{cphone},#{tid},#{pid},#{iid},#{vid},#{sid},#{cremarks})
+  	</insert>
+  	
+  	<delete id="deleteCustomer">
+  		delete from customer where cid = #{cid}
+  	</delete>
+  	
+</mapper>
